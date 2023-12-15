@@ -1,13 +1,16 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class LinePositionSetter : MonoBehaviour
 {
-    [SerializeField] private Color ConnectedLineColor = Color.green;
+    [SerializeField] private Color SucceessfullyConnectedLineColor = Color.green;
+    [SerializeField] private Color UnsuccessfullyConnectedLineColor = Color.red;
     [SerializeField] private Color DisconnectedLineColor = Color.white;
 
     private LineRenderer _lineRenderer;
     private CityDetector _cityDetector;
+    private MainParameterModel _moneyModel;
 
     private bool _isCityClicked;
     private bool _isCityConnected;
@@ -15,7 +18,7 @@ public class LinePositionSetter : MonoBehaviour
     public Vector2 StartLinePosition { get; private set; }
     public Vector2 EndLinePosition { get; private set; }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (_isCityClicked == false)
             return;
@@ -23,11 +26,6 @@ public class LinePositionSetter : MonoBehaviour
         _isCityConnected = _cityDetector.TryGetConnectedCityPosition(out Vector2 position);
         EndLinePosition = position;
         DrawLine();
-
-        if (_isCityConnected)
-            SetLineColor(ConnectedLineColor);
-        else
-            SetLineColor(DisconnectedLineColor);
     }
 
     private void OnDestroy()
@@ -36,10 +34,11 @@ public class LinePositionSetter : MonoBehaviour
         _cityDetector.DetectedCitiesReset -= OnCitiesReset;
     }
 
-    public void Initialize(CityDetector cityDetector)
+    public void Initialize(CityDetector cityDetector, MainParameterModel moneyModel)
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _cityDetector = cityDetector;
+        _moneyModel = moneyModel;
 
         _cityDetector.CityClicked += OnCityClicked;
         _cityDetector.DetectedCitiesReset += OnCitiesReset;
@@ -75,5 +74,15 @@ public class LinePositionSetter : MonoBehaviour
     private void DrawLine()
     {
         _lineRenderer.SetPositions(new Vector3[] { StartLinePosition, EndLinePosition });
+
+        float roadLengh = Mathf.Abs((StartLinePosition - EndLinePosition).magnitude);
+        int roadTotalPrice = Mathf.RoundToInt(roadLengh * PriceList.RoadUnitPrice);
+
+        if (_isCityConnected && _moneyModel.Value >= roadTotalPrice)
+            SetLineColor(SucceessfullyConnectedLineColor);
+        else if (_isCityConnected)
+            SetLineColor(UnsuccessfullyConnectedLineColor);
+        else
+            SetLineColor(DisconnectedLineColor);
     }
 }

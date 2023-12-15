@@ -9,27 +9,64 @@ public class BootStrap : MonoBehaviour
     [SerializeField] private Country _country;
     [SerializeField] private CameraMover _cameraMover;
 
+    [SerializeField] private MainParameterView _moneyView;
+    [SerializeField] private MainParameterView _passengerView;
+
     [SerializeField] private CityPanel _cityPanel;
+    [SerializeField] private CitiesInitializer _citiesInitializer;
+    [SerializeField] private ProvinceUnlocker ProvinceUnlocker;
     
+    private MainParameterModel _moneyModel;
+    private MainParameterModel _passengersModel;
+
+    private MainParameterCalculator _moneyCalculator;
     private UIPanelsSwitcher _uiPanelSwitcher;
     private CameraMoverSwitcher _cameraMoverSwitcher;
     private CityDetector _cityDetector;
     private UIStateMachine _uiStateMachine;
-
+    private CompositeDisposable _compositeDisposable;
+    private ProvinceLevelIncreaser _provinceLevelCalculator;
+    private GameUpgrades _gameUpgrades;
+    private PriceList _priceList;
 
     private void Awake()
     {
+        _compositeDisposable = new CompositeDisposable();
+
+        _provinceLevelCalculator = new ProvinceLevelIncreaser();
+        _priceList = new PriceList(_provinceLevelCalculator);
+        _compositeDisposable.Add(_priceList);
+
+        _passengersModel = new PassengersModel();
+        _passengerView.Initialize(_passengersModel);
+
+        _moneyModel = new MoneyModel();
+        _moneyView.Initialize(_moneyModel);
+        ProvinceUnlocker.Initialize(_moneyModel);
+
+        _gameUpgrades = new GameUpgrades();
+        _moneyCalculator = new MainParameterCalculator(_moneyModel, _passengersModel);
+        
+        _vehicleFactory.Initialize(_moneyCalculator);
+        _citiesInitializer.InitializeAllCities(_vehicleFactory);
+
         _uiStateMachine = new UIStateMachine();
         _cityDetector = new CityDetector(_inputManager);
-        _roadBuilder.Initialize(_cityDetector);
-        _vehicleFactory.Initialize();
-        _country.Initialize();
-
-        _uiPanelSwitcher = new UIPanelsSwitcher(_cityDetector, _uiStateMachine, _cityPanel);
-
-        _linePositionSetter.Initialize(_cityDetector);
-
         _cameraMoverSwitcher = new CameraMoverSwitcher(_inputManager, _cityDetector);
+
+        _roadBuilder.Initialize(_cityDetector, _moneyModel);
+        _country.Initialize(_provinceLevelCalculator);
+        _cityPanel.Initialize();
+
+        _uiPanelSwitcher = new UIPanelsSwitcher(_cityDetector, _uiStateMachine, _cityPanel, _cameraMoverSwitcher);
+        _compositeDisposable.Add(_uiPanelSwitcher);
+
+        _linePositionSetter.Initialize(_cityDetector, _moneyModel);
         _cameraMover.Initialize(_cameraMoverSwitcher);
+    }
+
+    private void OnDestroy()
+    {
+        _compositeDisposable.DisposeAll();
     }
 }

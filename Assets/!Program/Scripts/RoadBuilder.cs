@@ -11,14 +11,16 @@ public class RoadBuilder : MonoBehaviour
     [SerializeField] private Road _roadPrefab;
 
     private CityDetector _cityDetector;
+    private MainParameterModel _moneyModel;
 
     private List<Road> _roads = new List<Road>();
 
     public event Action<City, City> RoadAdded;
 
-    public void Initialize(CityDetector cityDetector)
+    public void Initialize(CityDetector cityDetector, MainParameterModel moneyModel)
     {
         _cityDetector = cityDetector;
+        _moneyModel = moneyModel;
 
         for (int i = 0; i < _roadsPoolCount; i++)
         {
@@ -41,6 +43,12 @@ public class RoadBuilder : MonoBehaviour
     public void TryCreateRoad(Vector2 startPosition, Vector2 endPosition, City firstConnectedCity, City secondConnectedCity)
     {
         if (firstConnectedCity.NearestConnectedCities.Contains(secondConnectedCity))
+            return;
+
+        float roadLengh = Mathf.Abs((endPosition - startPosition).magnitude);
+        int roadTotalPrice = Mathf.RoundToInt(roadLengh * PriceList.RoadUnitPrice);
+
+        if (_moneyModel.TryRemoveValue(roadTotalPrice) == false)
             return;
         
         Road road = _roads.FirstOrDefault(road => road.gameObject.activeSelf == false);
