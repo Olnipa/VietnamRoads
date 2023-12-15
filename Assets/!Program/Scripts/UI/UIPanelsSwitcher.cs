@@ -5,6 +5,7 @@ public class UIPanelsSwitcher : IDisposable
     private CityDetector _cityDetector;
     private UIStateMachine _uiStateMachine;
     private CityPanel _cityPanel;
+    private ProvinceUnlockPanel _provincePanel;
     private CameraMoverSwitcher _cameraMoverSwitcher;
 
     public UIPanelsSwitcher(CityDetector cityDetector, UIStateMachine uiStateMachine, CityPanel cityPanel, CameraMoverSwitcher cameraMoverSwitcher)
@@ -32,5 +33,10 @@ public class UIPanelsSwitcher : IDisposable
     private void OnCloseUIButtonClicked()
     {
         _uiStateMachine.ExitCurrentState();
+    }
+
+    private void OnProvinceUlockerClick()
+    {
+
     }
 }

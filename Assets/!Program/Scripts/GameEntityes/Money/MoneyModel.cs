@@ -2,6 +2,6 @@
 {
 	public MoneyModel()
 	{
-		Value = 20;
+		Value = 79;
 	}
 }

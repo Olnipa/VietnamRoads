@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Country : MonoBehaviour
 {
-    private List<Province> Provincies = new List<Province>();
+    private List<ProvinceView> Provincies = new List<ProvinceView>();
 	private bool _isActive;
 
 	public event Action Activated;
 
 	public void Initialize(ProvinceLevelIncreaser provinceLevelCalculator)
 	{
-		Provincies.AddRange(GetComponentsInChildren<Province>());
+		Provincies.AddRange(GetComponentsInChildren<ProvinceView>());
 
 		foreach (var province in Provincies)
 		{
-			province.Initialize(provinceLevelCalculator);
+			province.Initialize(new ProvinceModel(provinceLevelCalculator));
 		}
 	}
 

@@ -49,13 +49,13 @@ public class BootStrap : MonoBehaviour
         
         _vehicleFactory.Initialize(_moneyCalculator);
         _citiesInitializer.InitializeAllCities(_vehicleFactory);
+        _country.Initialize(_provinceLevelCalculator);
 
         _uiStateMachine = new UIStateMachine();
         _cityDetector = new CityDetector(_inputManager);
         _cameraMoverSwitcher = new CameraMoverSwitcher(_inputManager, _cityDetector);
 
         _roadBuilder.Initialize(_cityDetector, _moneyModel);
-        _country.Initialize(_provinceLevelCalculator);
         _cityPanel.Initialize();
 
         _uiPanelSwitcher = new UIPanelsSwitcher(_cityDetector, _uiStateMachine, _cityPanel, _cameraMoverSwitcher);

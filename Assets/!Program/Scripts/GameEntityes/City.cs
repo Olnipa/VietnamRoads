@@ -6,13 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class City : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private ProvinceView _provinceView;
+
     [SerializeField] private int _defaultCarsCount = 3;
     [SerializeField] private int _additionalCarsOnLevelUp = 3;
     [SerializeField] private int _maxMotorbikeLevel = 3;
     [SerializeField] private int _maxCarLevel = 3;
     [SerializeField] private int _maxBusLevel = 3;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Province _province;
 
     [SerializeField] private float _minTimeBetweenCar = 4.5f;
     [SerializeField] private float _maxTimeBetweenCar = 9f;
@@ -25,6 +26,7 @@ public class City : MonoBehaviour
     public CancellationTokenSource CancellationTokenSource { get; private set; }
     public HashSet<City> NearestConnectedCities { get; private set; }  = new HashSet<City>();
     public SpriteRenderer SpriteRenderer => _spriteRenderer;
+    public ProvinceView ProvinceView => _provinceView;
     public int CurrentBikeLevel { get; private set; } = 1;
     public int CurrentCarLevel { get; private set; } = 1;
     public int CurrentBusLevel { get; private set; } = 1;
@@ -36,7 +38,14 @@ public class City : MonoBehaviour
         CancellationTokenSource = new CancellationTokenSource();
         _vehicleFactory = vehicleFactory;
         gameObject.SetActive(false);
-        _province.Activated += OnProvinceActivation;
+
+        _provinceView.ProvinceViewInitialized += OnProvinceInitialization;
+    }
+
+    public void OnProvinceInitialization()
+    {
+        _provinceView.ProvinceViewInitialized -= OnProvinceInitialization;
+        _provinceView.ProvinceModel.Activated += OnProvinceActivation;
     }
 
     public void IncreaseLevel()
@@ -54,8 +63,8 @@ public class City : MonoBehaviour
     private void OnProvinceActivation()
     {
         gameObject.SetActive(true);
-        _vehicleStation = new VehicleStation(this, _vehicleFactory, _province.Level, _minTimeBetweenCar, _maxTimeBetweenCar, _timeToWaitAvailableVehicle, _defaultVehiclesCount);
-        _province.Activated -= OnProvinceActivation;
+        _vehicleStation = new VehicleStation(this, _vehicleFactory, _provinceView.ProvinceModel.Level, _minTimeBetweenCar, _maxTimeBetweenCar, _timeToWaitAvailableVehicle, _defaultVehiclesCount);
+        _provinceView.ProvinceViewInitialized -= OnProvinceActivation;
     }
 
     private void OnDestroy()

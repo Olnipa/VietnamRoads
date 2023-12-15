@@ -29,7 +29,7 @@ public class CityDetector
 
         _inputManager.ButtonDownClicked += OnButtonDownClick;
         _inputManager.ButtonUpClicked += OnUpButtonClick;
-        _inputManager.Destroyed += OnInputDestroy;
+        _inputManager.Destroyed += OnInputManagerDestroy;
     }
 
     private void OnButtonDownClick()
@@ -88,10 +88,10 @@ public class CityDetector
         DetectedCitiesReset.Invoke();
     }
 
-    private void OnInputDestroy()
+    private void OnInputManagerDestroy()
     {
         _inputManager.ButtonDownClicked -= OnButtonDownClick;
         _inputManager.ButtonUpClicked -= OnUpButtonClick;
-        _inputManager.Destroyed -= OnInputDestroy;
+        _inputManager.Destroyed -= OnInputManagerDestroy;
     }
 }

@@ -14,7 +14,7 @@
     public void Enter()
     {
         _cameraMoverSwitcher.Disable();
-        _cityPanel.ShowPanel(_city);
+        _cityPanel.ShowPanel(_city.name);
     }
 
     public void Exit()

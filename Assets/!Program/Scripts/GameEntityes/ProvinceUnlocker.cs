@@ -2,7 +2,7 @@
 
 public class ProvinceUnlocker : MonoBehaviour
 {
-	[SerializeField] private Province _province;
+	[SerializeField] private ProvinceModel _province;
 
 	private MainParameterModel _moneyModel;
 

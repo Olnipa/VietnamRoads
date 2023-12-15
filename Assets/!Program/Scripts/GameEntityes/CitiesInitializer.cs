@@ -11,7 +11,7 @@ public class CitiesInitializer : MonoBehaviour
 
 		foreach(City city in _cities)
 		{
-			city.Initialize(_vehicleFactory);
+            city.Initialize(_vehicleFactory);
 		}
 	}
 }
