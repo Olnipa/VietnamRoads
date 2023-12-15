@@ -2,7 +2,7 @@
 
 public class ProvinceUnlocker : MonoBehaviour
 {
-	[SerializeField] private ProvinceModel _province;
+	[SerializeField] private ProvinceView _provinceView;
 
 	private MainParameterModel _moneyModel;
 
@@ -20,7 +20,7 @@ public class ProvinceUnlocker : MonoBehaviour
 	{
 		if (_moneyModel.TryRemoveValue(PriceList.UnlockProvincePrice) == false)
 		{
-			_province.Unlock();
+            _provinceView.ProvinceModel.Unlock();
 		}
 	}
 }
