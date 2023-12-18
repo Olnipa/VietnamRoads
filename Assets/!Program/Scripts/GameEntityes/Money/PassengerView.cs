@@ -2,6 +2,6 @@
 {
     protected override void OnValueUpdate()
     {
-        _valueView.text = _mainParameterModel.Value.ToString() + " / " + PriceList.PassengersToUnlockProvince;
+        _valueView.text = _mainParameterModel.Value.ToString() + " / " + PriceList.PassengersToAllowBuyingNextProvince;
     }
 }

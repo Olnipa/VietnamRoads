@@ -6,13 +6,13 @@ public class VehicleFactory : MonoBehaviour
     [SerializeField] private MotoBike _motobike;
     [SerializeField] private int _motobikeInitialCapacity = 1;
 
-    private MainParameterCalculator _moneyCalculator;
+    private MainParametersCalculator _moneyCalculator;
 
     private const int FirstCityLevel = 1;
     //private const int SecondCityLevel = 2;
     //private const int ThirdCityLevel = 3;
 
-    public void Initialize(MainParameterCalculator moneyCalculator)
+    public void Initialize(MainParametersCalculator moneyCalculator)
     {
         _moneyCalculator = moneyCalculator;
     }

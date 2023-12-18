@@ -2,32 +2,35 @@
 
 public class UIPanelsSwitcher : IDisposable
 {
-    private CityDetector _cityDetector;
+    private ClickedCityDetector _clickedCityDetector;
     private UIStateMachine _uiStateMachine;
     private CityPanel _cityPanel;
-    private ProvinceUnlockPanel _provincePanel;
+    private ProvinceUnlockPanel _provinceUnlockPanel;
     private CameraMoverSwitcher _cameraMoverSwitcher;
 
-    public UIPanelsSwitcher(CityDetector cityDetector, UIStateMachine uiStateMachine, CityPanel cityPanel, CameraMoverSwitcher cameraMoverSwitcher)
+    public UIPanelsSwitcher(ClickedCityDetector clickedCityDetector, UIStateMachine uiStateMachine, CityPanel cityPanel, ProvinceUnlockPanel provincePanel, CameraMoverSwitcher cameraMoverSwitcher)
     {
-        _cityDetector = cityDetector;
+        _clickedCityDetector = clickedCityDetector;
         _uiStateMachine = uiStateMachine;
         _cityPanel = cityPanel;
+        _provinceUnlockPanel = provincePanel;
         _cameraMoverSwitcher = cameraMoverSwitcher;
 
-        _cityDetector.CityChosed += OnCityChoose;
+        _provinceUnlockPanel.OkButtonClicked += OnProvinceUnlockButtonClick;
+        _clickedCityDetector.CityChosed += OnCityChoose;
         _cityPanel.CloseButtonClicked += OnCloseUIButtonClicked;
     }
 
     public void Dispose()
     {
-        _cityDetector.CityChosed -= OnCityChoose;
+        _provinceUnlockPanel.OkButtonClicked -= OnProvinceUnlockButtonClick;
+        _clickedCityDetector.CityChosed -= OnCityChoose;
         _cityPanel.CloseButtonClicked -= OnCloseUIButtonClicked;
     }
 
     private void OnCityChoose()
     {
-        _uiStateMachine.ChangeState(new UICityPanelState(_cityPanel, _cityDetector.ClickedCity, _cameraMoverSwitcher));
+        _uiStateMachine.ChangeState(new UICityPanelState(_cityPanel, _clickedCityDetector.ClickedCity, _cameraMoverSwitcher));
     }
 
     private void OnCloseUIButtonClicked()
@@ -35,8 +38,13 @@ public class UIPanelsSwitcher : IDisposable
         _uiStateMachine.ExitCurrentState();
     }
 
-    private void OnProvinceUlockerClick()
+    public void OnProvinceUnlockButtonClick(ProvinceView provinceView)
     {
+        _uiStateMachine.ExitCurrentState();
+    }
 
+    public void OnLockProvinceClick(ProvinceView provinceView)
+    {
+        _uiStateMachine.ChangeState(new UIProvinceUnlockPanelState(_provinceUnlockPanel, provinceView, _cameraMoverSwitcher));
     }
 }

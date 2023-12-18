@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class UIPanel : MonoBehaviour
 {
     [SerializeField] protected TextMeshProUGUI _titleText;
+    [SerializeField] protected MoneyModel _moneyModel;
+
     [SerializeField] private Button _closeButton;
     [SerializeField] private Button _universalCloseButton;
 
@@ -17,7 +19,7 @@ public class UIPanel : MonoBehaviour
         _universalCloseButton.onClick.RemoveListener(OnCloseButtonClick);
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         _closeButton.onClick.AddListener(OnCloseButtonClick);
         _universalCloseButton.onClick.AddListener(OnCloseButtonClick);
@@ -32,7 +34,7 @@ public class UIPanel : MonoBehaviour
 
     protected void OnCloseButtonClick()
     {
-        CloseButtonClicked.Invoke();
+        CloseButtonClicked?.Invoke();
         gameObject.SetActive(false);
         _universalCloseButton.gameObject.SetActive(false);
     }

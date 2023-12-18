@@ -37,6 +37,7 @@ public class City : MonoBehaviour
     {
         CancellationTokenSource = new CancellationTokenSource();
         _vehicleFactory = vehicleFactory;
+        _spriteRenderer.color = _provinceView.CitiesColor;
         gameObject.SetActive(false);
 
         _provinceView.ProvinceViewInitialized += OnProvinceInitialization;

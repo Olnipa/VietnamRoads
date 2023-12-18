@@ -5,9 +5,9 @@ public class PriceList : IDisposable
 {
     private ProvinceLevelIncreaser _provinceLevelIncreaser;
 
-    public static int PassengersToUnlockProvince { get; private set; } = 1000;
+    public static int PassengersToAllowBuyingNextProvince { get; private set; } = 1000;
     public static float RoadUnitPrice { get; private set; } = 1.1f;
-    public static int UnlockProvincePrice { get; private set; } = 100;
+    public static int UnlockNextProvincePrice { get; private set; } = 1;
 
     public PriceList(ProvinceLevelIncreaser provinceLevelIncreaser)
     {
@@ -17,8 +17,8 @@ public class PriceList : IDisposable
 
     public void OnProvinceUnlock()
     {
-        UnlockProvincePrice = Mathf.RoundToInt(GameUpgrades.UnlockProvincePriceCoefficient * UnlockProvincePrice);
-        PassengersToUnlockProvince = Mathf.RoundToInt(GameUpgrades.PassengersToNextLevelCoefficient * PassengersToUnlockProvince);
+        UnlockNextProvincePrice = Mathf.RoundToInt(GameUpgrades.UnlockProvincePriceCoefficient * UnlockNextProvincePrice);
+        PassengersToAllowBuyingNextProvince = Mathf.RoundToInt(GameUpgrades.PassengersToNextLevelCoefficient * PassengersToAllowBuyingNextProvince);
     }
 
     public void Dispose()

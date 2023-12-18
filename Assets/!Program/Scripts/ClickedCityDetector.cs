@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class CityDetector
+public class ClickedCityDetector
 {
     private ContactFilter2D _contactFilter;
     private RaycastHit2D[] _rayCastResults = new RaycastHit2D[3];
@@ -14,11 +14,12 @@ public class CityDetector
     public City ConnectedCity { get; private set; }
 
     public event Action<Vector2> CityClicked;
+    public event Action<string> ProvinceUnlockerClicked;
     public event Action CityConnected;
     public event Action CityChosed;
     public event Action DetectedCitiesReset;
 
-    public CityDetector(InputManager inputManager)
+    public ClickedCityDetector(InputManager inputManager)
     {
         _inputManager = inputManager;
         _camera = Camera.main;
@@ -44,7 +45,10 @@ public class CityDetector
 
         foreach (var hit in hits)
         {
-            if (hit && hit.collider.TryGetComponent(out City clickedCity))
+            if (hit == false)
+                continue;
+
+            if (hit.collider.TryGetComponent(out City clickedCity))
             {
                 CityClicked.Invoke(clickedCity.transform.position);
                 return clickedCity;

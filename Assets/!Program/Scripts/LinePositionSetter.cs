@@ -9,7 +9,7 @@ public class LinePositionSetter : MonoBehaviour
     [SerializeField] private Color DisconnectedLineColor = Color.white;
 
     private LineRenderer _lineRenderer;
-    private CityDetector _cityDetector;
+    private ClickedCityDetector _cityDetector;
     private MainParameterModel _moneyModel;
 
     private bool _isCityClicked;
@@ -34,7 +34,7 @@ public class LinePositionSetter : MonoBehaviour
         _cityDetector.DetectedCitiesReset -= OnCitiesReset;
     }
 
-    public void Initialize(CityDetector cityDetector, MainParameterModel moneyModel)
+    public void Initialize(ClickedCityDetector cityDetector, MainParameterModel moneyModel)
     {
         _lineRenderer = GetComponent<LineRenderer>();
         _cityDetector = cityDetector;

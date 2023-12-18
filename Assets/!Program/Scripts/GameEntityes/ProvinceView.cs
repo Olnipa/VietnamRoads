@@ -5,8 +5,10 @@ public class ProvinceView : MonoBehaviour
 {
     [SerializeField] private bool _isActive;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Color _citiesColor;
 
     public bool IsActive => _isActive;
+    public Color CitiesColor => _citiesColor;
 
     public event Action ProvinceViewInitialized;
 
