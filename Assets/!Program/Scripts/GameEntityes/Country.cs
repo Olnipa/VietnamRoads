@@ -20,9 +20,9 @@ public class Country : MonoBehaviour
 			province.Initialize(new ProvinceModel(provinceLevelCalculator));
         }
 
-		foreach (var unlocker in _provinciesUnlockers)
+		foreach (var provinceLocker in _provinciesUnlockers)
 		{
-			unlocker.Initialize(uiPanelsSwitcher);
+			provinceLocker.Initialize(uiPanelsSwitcher);
         }
 	}
 
