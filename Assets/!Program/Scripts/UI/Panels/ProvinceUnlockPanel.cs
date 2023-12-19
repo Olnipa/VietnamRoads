@@ -13,6 +13,11 @@ public class ProvinceUnlockPanel : UIPanel
 
     public event Action<ProvinceView> OkButtonClicked;
 
+    public override void ShowPanel(Model titleText)
+    {
+        base.ShowPanel(titleText);
+    }
+
     public void ShowProvincePanel(ProvinceView provinceView)
     {
         base.ShowPanel(_titleProvinceToOpen + " " + provinceView.name + "?");
@@ -25,7 +30,6 @@ public class ProvinceUnlockPanel : UIPanel
     private void OnOkButtonClick()
     {
         OkButtonClicked.Invoke(_provinceView);
-
         _okButton.onClick.RemoveListener(OnOkButtonClick);
     }
 }

@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class CitiesInitializer : MonoBehaviour
 {
-	private List<City> _cities = new List<City>();
+	private List<CityView> _cities = new List<CityView>();
 
     public void InitializeAllCities(VehicleFactory _vehicleFactory)
 	{
-		_cities.AddRange(GetComponentsInChildren<City>());
+		_cities.AddRange(GetComponentsInChildren<CityView>());
 
-		foreach(City city in _cities)
+		foreach(CityView city in _cities)
 		{
-            city.Initialize(_vehicleFactory);
+			CityModel cityModel = new CityModel(city.transform.position);
+            city.Initialize(cityModel, _vehicleFactory);
 		}
 	}
 }

@@ -10,10 +10,10 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-            ButtonDownClicked?.Invoke();
+            ButtonDownClicked.Invoke();
 
         if (Input.GetMouseButtonUp(0))
-            ButtonUpClicked?.Invoke();
+            ButtonUpClicked.Invoke();
     }
 
     private void OnDestroy()

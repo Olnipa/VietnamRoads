@@ -25,7 +25,7 @@ public class UIPanel : MonoBehaviour
         _universalCloseButton.onClick.AddListener(OnCloseButtonClick);
     }
 
-    public virtual void ShowPanel(string titleText)
+    public virtual void ShowPanel(Model titleText)
     {
         gameObject.SetActive(true);
         _titleText.text = titleText;

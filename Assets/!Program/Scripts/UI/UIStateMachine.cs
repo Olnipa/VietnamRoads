@@ -10,7 +10,7 @@ public class UIStateMachine
 
     public void ChangeState<T>(T newState) where T : IUIState
     {
-        ExitCurrentState();
+        _currentState?.Exit();
         _currentState = newState;
         _currentState.Enter();
         UIPanelOpened.Invoke();
@@ -19,6 +19,7 @@ public class UIStateMachine
     public void ExitCurrentState()
     {
         _currentState?.Exit();
+        _currentState = null;
         UIPanelClosed.Invoke();
     }
 }

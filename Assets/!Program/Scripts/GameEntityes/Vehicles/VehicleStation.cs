@@ -13,13 +13,13 @@ public class VehicleStation
     private float _vehiclesCountToUnblock;
     private int _provinceLevel;
 
-    public City RelatedCity { get; private set; }
+    public CityView RelatedCity { get; private set; }
     private VehicleFactory _vehicleFactory;
 
     private List<Vehicle> _vehicles = new List<Vehicle>();
     private bool _isWorking;
 
-    public VehicleStation(City city, VehicleFactory vehicleFactory, int provinceLevel, float minTimeBetweenCarMove = 2.5f, float maxTimeBetweenCarMove = 7f, 
+    public VehicleStation(CityView city, VehicleFactory vehicleFactory, int provinceLevel, float minTimeBetweenCarMove = 2.5f, float maxTimeBetweenCarMove = 7f, 
         float timeToWaitAvailableVehicle = 3f, int defaultVehiclesCount = 25, float vehiclesCountToUnblock = 3)
     {
         RelatedCity = city;

@@ -1,6 +1,6 @@
 using System;
 
-public class ProvinceModel
+public class ProvinceModel : Model
 {
 	private ProvinceLevelIncreaser _provinceLevelCalculator;
 

@@ -451,7 +451,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.45
+  m_fontSize: 61.5
   m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1516,9 +1516,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1289681880}
-  - {fileID: 1719230657}
   - {fileID: 592307589}
   - {fileID: 1845434369}
+  - {fileID: 1719230657}
   - {fileID: 1980739424}
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -2927,20 +2927,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289681879}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3825,7 +3825,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.30128604, y: 0.19339246}
   m_AnchorMax: {x: 0.9218434, y: 0.73800004}
-  m_AnchoredPosition: {x: -0.9700012, y: -0.46500015}
+  m_AnchoredPosition: {x: -0.9700012, y: -0.46499634}
   m_SizeDelta: {x: -3.1599998, y: 1.0700002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653752649
@@ -4143,7 +4143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a07f7de7fea7b4dae6ce919a673371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _titleText: {fileID: 0}
+  _titleText: {fileID: 842305929}
   _closeButton: {fileID: 1684158886}
   _universalCloseButton: {fileID: 1289681881}
   _motorbikeLevel: 0
@@ -5638,7 +5638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3087629112477927302, guid: 15383ab4a6c44884d85e8270a6905d43, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.2089157
+      value: -1.2089233
       objectReference: {fileID: 0}
     - target: {fileID: 3733130363669825211, guid: 15383ab4a6c44884d85e8270a6905d43, type: 3}
       propertyPath: _titleProvinceToOpen
@@ -5751,6 +5751,10 @@ PrefabInstance:
     - target: {fileID: 6627523587853827757, guid: 15383ab4a6c44884d85e8270a6905d43, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.3477249
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627523587853827757, guid: 15383ab4a6c44884d85e8270a6905d43, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.22459793
       objectReference: {fileID: 0}
     - target: {fileID: 7236484534462138446, guid: 15383ab4a6c44884d85e8270a6905d43, type: 3}
       propertyPath: m_AnchoredPosition.y

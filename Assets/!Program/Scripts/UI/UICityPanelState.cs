@@ -1,10 +1,10 @@
 ﻿public class UICityPanelState : IUIState
 {
     private CityPanel _cityPanel;
-    private City _city;
+    private CityView _city;
     private CameraMoverSwitcher _cameraMoverSwitcher;
 
-    public UICityPanelState(CityPanel cityPanel, City clickedCity, CameraMoverSwitcher cameraMoverSwitcher)
+    public UICityPanelState(CityPanel cityPanel, CityView clickedCity, CameraMoverSwitcher cameraMoverSwitcher)
     {
         _city = clickedCity;
         _cityPanel = cityPanel;

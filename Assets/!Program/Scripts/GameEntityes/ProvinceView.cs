@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ProvinceView : MonoBehaviour
+public class ProvinceView : View
 {
     [SerializeField] private bool _isActive;
     [SerializeField] private SpriteRenderer _spriteRenderer;

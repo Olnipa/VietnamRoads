@@ -15,7 +15,7 @@ public class RoadBuilder : MonoBehaviour
 
     private List<Road> _roads = new List<Road>();
 
-    public event Action<City, City> RoadAdded;
+    public event Action<CityView, CityView> RoadAdded;
 
     public void Initialize(ClickedCityDetector cityDetector, MainParameterModel moneyModel)
     {
@@ -37,10 +37,10 @@ public class RoadBuilder : MonoBehaviour
 
     private void OnCityConnected()
     {
-        TryCreateRoad(_linePositionSetter.StartLinePosition, _linePositionSetter.EndLinePosition, _cityDetector.ClickedCity, _cityDetector.ConnectedCity);
+        TryCreateRoad(_linePositionSetter.StartLinePosition, _linePositionSetter.EndLinePosition, _cityDetector.ClickedCity.CityModel, _cityDetector.ConnectedCity.CityModel);
     }
 
-    public void TryCreateRoad(Vector2 startPosition, Vector2 endPosition, City firstConnectedCity, City secondConnectedCity)
+    public void TryCreateRoad(Vector2 startPosition, Vector2 endPosition, CityModel firstConnectedCity, CityModel secondConnectedCity)
     {
         if (firstConnectedCity.NearestConnectedCities.Contains(secondConnectedCity))
             return;

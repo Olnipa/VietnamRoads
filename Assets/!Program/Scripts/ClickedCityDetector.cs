@@ -10,8 +10,8 @@ public class ClickedCityDetector
 
     private const string LayerMaskCity = "City";
     
-    public City ClickedCity { get; private set; }
-    public City ConnectedCity { get; private set; }
+    public CityView ClickedCity { get; private set; }
+    public CityView ConnectedCity { get; private set; }
 
     public event Action<Vector2> CityClicked;
     public event Action<string> ProvinceUnlockerClicked;
@@ -38,7 +38,7 @@ public class ClickedCityDetector
         ClickedCity = TryGetCityUnderMouse();
     }
 
-    private City TryGetCityUnderMouse()
+    private CityView TryGetCityUnderMouse()
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
@@ -48,7 +48,7 @@ public class ClickedCityDetector
             if (hit == false)
                 continue;
 
-            if (hit.collider.TryGetComponent(out City clickedCity))
+            if (hit.collider.TryGetComponent(out CityView clickedCity))
             {
                 CityClicked.Invoke(clickedCity.transform.position);
                 return clickedCity;
@@ -65,7 +65,7 @@ public class ClickedCityDetector
         Vector2 direction = currentMousePosition - ClickedCity.transform.position;
         int hitsCount = Physics2D.Raycast(ClickedCity.transform.position, direction, _contactFilter, _rayCastResults, direction.magnitude);
 
-        if (hitsCount <= 1 || _rayCastResults[1].collider.TryGetComponent(out City city) == false)
+        if (hitsCount <= 1 || _rayCastResults[1].collider.TryGetComponent(out CityView city) == false)
         {
             ConnectedCity = null;
             currentPosition = currentMousePosition;

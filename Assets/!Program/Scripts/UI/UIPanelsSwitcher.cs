@@ -23,13 +23,17 @@ public class UIPanelsSwitcher : IDisposable
         _provinceUnlockPanel.OkButtonClicked += OnProvinceUnlockButtonClick;
         _clickedCityDetector.CityChosed += OnCityChoose;
         _cityPanel.CloseButtonClicked += OnCloseUIButtonClicked;
+        _provinceUnlockPanel.CloseButtonClicked += OnCloseUIButtonClicked;
     }
 
     public void OnUIOpen() => PanelIsOpen = true;
 
     public void OnUIClose() => PanelIsOpen = false;
 
-    public void OnProvinceUnlockButtonClick(ProvinceView provinceView) => OnCloseUIButtonClicked();
+    public void OnProvinceUnlockButtonClick(ProvinceView provinceView)
+    {
+        OnCloseUIButtonClicked();
+    }
 
     public void OnLockProvinceClick(ProvinceView provinceView)
     {
@@ -46,6 +50,7 @@ public class UIPanelsSwitcher : IDisposable
         _provinceUnlockPanel.OkButtonClicked -= OnProvinceUnlockButtonClick;
         _clickedCityDetector.CityChosed -= OnCityChoose;
         _cityPanel.CloseButtonClicked -= OnCloseUIButtonClicked;
+        _provinceUnlockPanel.CloseButtonClicked -= OnCloseUIButtonClicked;
     }
 
     private void OnCityChoose()
