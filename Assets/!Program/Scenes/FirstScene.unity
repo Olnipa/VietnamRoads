@@ -2051,6 +2051,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822638223}
   m_CullTransparentMesh: 1
+--- !u!114 &824042051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3504302356683251812, guid: 278919ab9441f2e4f84e02911825fa62, type: 3}
+  m_PrefabInstance: {fileID: 1109359183861572677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3267ba2faab9104a82e778d88fa20f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &842305927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2564,7 +2575,7 @@ PrefabInstance:
     - target: {fileID: 7537796180473650166, guid: 04e4db55e00cc5743b2f9834faa65c57, type: 3}
       propertyPath: _provinceView
       value: 
-      objectReference: {fileID: 3593751480386746695}
+      objectReference: {fileID: 3593751480204957570}
     - target: {fileID: 7537796180473650166, guid: 04e4db55e00cc5743b2f9834faa65c57, type: 3}
       propertyPath: _provincePanel
       value: 
@@ -4986,7 +4997,7 @@ PrefabInstance:
     - target: {fileID: 3044354298338214141, guid: 278919ab9441f2e4f84e02911825fa62, type: 3}
       propertyPath: _provinceView
       value: 
-      objectReference: {fileID: 3593751480386746695}
+      objectReference: {fileID: 824042051}
     - target: {fileID: 3044354298338214141, guid: 278919ab9441f2e4f84e02911825fa62, type: 3}
       propertyPath: _provincePanel
       value: 
@@ -5281,7 +5292,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1296859411, guid: 80dd202cbddf988459176f30f79c1351, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5375,7 +5386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isActive: 0
   _spriteRenderer: {fileID: 3532441992316178235}
-  _citiesColor: {r: 0, g: 0, b: 0, a: 0}
+  _citiesColor: {r: 1, g: 0.93272305, b: 0, a: 1}
 --- !u!1 &3593751480386746694
 GameObject:
   m_ObjectHideFlags: 0
@@ -5408,7 +5419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isActive: 0
   _spriteRenderer: {fileID: 3532441992195154428}
-  _citiesColor: {r: 0, g: 0, b: 0, a: 0}
+  _citiesColor: {r: 0, g: 1, b: 0.9131353, a: 1}
 --- !u!212 &4493699398178177578 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1373316786668331575, guid: c7caa87274a1c4d41ac2ab8b9404a057, type: 3}
@@ -5756,6 +5767,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4459812762244363643, guid: c7caa87274a1c4d41ac2ab8b9404a057, type: 3}
   m_PrefabInstance: {fileID: 7036960060702416480}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &6650758852039109406 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1373316786668331575, guid: c7caa87274a1c4d41ac2ab8b9404a057, type: 3}
+  m_PrefabInstance: {fileID: 7036960060702416480}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7036960060607410343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5880,7 +5896,7 @@ PrefabInstance:
     - target: {fileID: 63747070172534461, guid: c7caa87274a1c4d41ac2ab8b9404a057, type: 3}
       propertyPath: _spriteRenderer
       value: 
-      objectReference: {fileID: 6458392142997014208}
+      objectReference: {fileID: 6650758852039109406}
     - target: {fileID: 63747070172534461, guid: c7caa87274a1c4d41ac2ab8b9404a057, type: 3}
       propertyPath: _defaultVehiclesCount
       value: 30

@@ -35,7 +35,6 @@ public class UIPanel : MonoBehaviour
     protected void OnCloseButtonClick()
     {
         CloseButtonClicked?.Invoke();
-        gameObject.SetActive(false);
         _universalCloseButton.gameObject.SetActive(false);
     }
 }

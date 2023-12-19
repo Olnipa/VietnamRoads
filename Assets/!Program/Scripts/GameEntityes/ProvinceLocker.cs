@@ -6,11 +6,6 @@ public class ProvinceLocker : MonoBehaviour
 
 	private UIPanelsSwitcher _uiPanelsSwitcher;
 
-	private void OnDisable()
-	{
-		_provinceView.ProvinceModel.Activated -= OnProvinceActivated;
-	}
-
 	public void Initialize(UIPanelsSwitcher uiPanelsSwitcher)
 	{
 		_uiPanelsSwitcher = uiPanelsSwitcher;
@@ -34,5 +29,6 @@ public class ProvinceLocker : MonoBehaviour
 	private void OnProvinceActivated()
 	{
 		gameObject.SetActive(false);
-	}
+        _provinceView.ProvinceModel.Activated -= OnProvinceActivated;
+    }
 }
