@@ -9,27 +9,29 @@ public class ProvinceUnlockPanel : UIPanel
     [SerializeField] private TextMeshProUGUI _priceToUnlockProvince;
     [SerializeField] private string _titleProvinceToOpen;
 
-    private ProvinceView _provinceView;
+    private ProvinceModel _provinceModel;
 
-    public event Action<ProvinceView> OkButtonClicked;
+    public event Action<ProvinceModel> OkButtonClicked;
 
-    public override void ShowPanel(Model titleText)
+    public override void ShowPanel(Model modelToShow)
     {
-        base.ShowPanel(titleText);
-    }
-
-    public void ShowProvincePanel(ProvinceView provinceView)
-    {
-        base.ShowPanel(_titleProvinceToOpen + " " + provinceView.name + "?");
-        _provinceView = provinceView;
-        _priceToUnlockProvince.text = PriceList.UnlockNextProvincePrice.ToString();
-
-        _okButton.onClick.AddListener(OnOkButtonClick);
+        if (modelToShow is ProvinceModel provinceModel)
+        {
+            base.ShowPanel(modelToShow);
+            _provinceModel = provinceModel;
+            _titleText.text = _titleProvinceToOpen;
+            _priceToUnlockProvince.text = PriceList.UnlockNextProvincePrice.ToString();
+            _okButton.onClick.AddListener(OnOkButtonClick);
+        }
     }
 
     private void OnOkButtonClick()
     {
-        OkButtonClicked.Invoke(_provinceView);
+        OkButtonClicked.Invoke(_provinceModel);
+    }
+
+    private void OnDisable()
+    {
         _okButton.onClick.RemoveListener(OnOkButtonClick);
     }
 }

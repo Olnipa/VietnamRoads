@@ -11,7 +11,7 @@ public class CitiesInitializer : MonoBehaviour
 
 		foreach(CityView city in _cities)
 		{
-			CityModel cityModel = new CityModel(city.transform.position);
+			CityModel cityModel = new CityModel(city.transform.position, city.name);
             city.Initialize(cityModel, _vehicleFactory);
 		}
 	}

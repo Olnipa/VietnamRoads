@@ -23,17 +23,10 @@ public class MainParametersCalculator : IDisposable
         _passengerModel.AddValue(passengersCount);
     }
 
-    public void OnPovinceUnlockClick(ProvinceView provinceView)
+    public void OnPovinceUnlockClick(ProvinceModel provinceModel)
     {
         if (_moneyModel.TryRemoveValue(PriceList.UnlockNextProvincePrice))
-        {
-            provinceView.ProvinceModel.Unlock();
-        }
-        else
-        {
-            Debug.Log("Not enouth money");
-        }
-
+            provinceModel.Unlock();
     }
 
     public void Dispose()

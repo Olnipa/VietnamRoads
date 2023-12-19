@@ -15,8 +15,6 @@ public class RoadBuilder : MonoBehaviour
 
     private List<Road> _roads = new List<Road>();
 
-    public event Action<CityView, CityView> RoadAdded;
-
     public void Initialize(ClickedCityDetector cityDetector, MainParameterModel moneyModel)
     {
         _cityDetector = cityDetector;

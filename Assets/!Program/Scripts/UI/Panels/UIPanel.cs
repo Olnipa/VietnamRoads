@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIPanel : MonoBehaviour
+public abstract class UIPanel : MonoBehaviour
 {
     [SerializeField] protected TextMeshProUGUI _titleText;
     [SerializeField] protected MoneyModel _moneyModel;
@@ -25,10 +25,9 @@ public class UIPanel : MonoBehaviour
         _universalCloseButton.onClick.AddListener(OnCloseButtonClick);
     }
 
-    public virtual void ShowPanel(Model titleText)
+    public virtual void ShowPanel(Model modelToShow)
     {
         gameObject.SetActive(true);
-        _titleText.text = titleText;
         _universalCloseButton.gameObject.SetActive(true);
     }
 

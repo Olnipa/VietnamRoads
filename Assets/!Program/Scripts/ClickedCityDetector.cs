@@ -14,9 +14,8 @@ public class ClickedCityDetector
     public CityView ConnectedCity { get; private set; }
 
     public event Action<Vector2> CityClicked;
-    public event Action<string> ProvinceUnlockerClicked;
     public event Action CityConnected;
-    public event Action CityChosed;
+    public event Action<CityModel> CityChosed;
     public event Action DetectedCitiesReset;
 
     public ClickedCityDetector(InputManager inputManager)
@@ -84,7 +83,7 @@ public class ClickedCityDetector
             if (ConnectedCity != null)
                 CityConnected.Invoke();
             else if (ClickedCity == TryGetCityUnderMouse())
-                CityChosed.Invoke();
+                CityChosed.Invoke(ClickedCity.CityModel);
         }
 
         ClickedCity = null;

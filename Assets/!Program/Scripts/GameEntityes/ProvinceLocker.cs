@@ -23,7 +23,7 @@ public class ProvinceLocker : MonoBehaviour
 
 	private void OnProvinceUnlockClick()
 	{
-        _uiPanelsSwitcher.OnLockProvinceClick(_provinceView);
+        _uiPanelsSwitcher.OnLockProvinceClick(_provinceView.ProvinceModel);
 	}
 
 	private void OnProvinceActivated()

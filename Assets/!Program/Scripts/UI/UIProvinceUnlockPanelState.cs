@@ -1,12 +1,12 @@
 ﻿public class UIProvinceUnlockPanelState : IUIState
 {
     private ProvinceUnlockPanel _provinceUnlockPanel;
-    private ProvinceView _provinceView;
+    private ProvinceModel _provinceModel;
     private CameraMoverSwitcher _cameraMoverSwitcher;
 
-    public UIProvinceUnlockPanelState(ProvinceUnlockPanel provinceUnlockPanel, ProvinceView clickedProvinceView, CameraMoverSwitcher cameraMoverSwitcher)
+    public UIProvinceUnlockPanelState(ProvinceUnlockPanel provinceUnlockPanel, ProvinceModel clickedProvinceModel, CameraMoverSwitcher cameraMoverSwitcher)
     {
-        _provinceView = clickedProvinceView;
+        _provinceModel = clickedProvinceModel;
         _provinceUnlockPanel = provinceUnlockPanel;
         _cameraMoverSwitcher = cameraMoverSwitcher;
     }
@@ -14,7 +14,7 @@
     public void Enter()
     {
         _cameraMoverSwitcher.Disable();
-        _provinceUnlockPanel.ShowProvincePanel(_provinceView);
+        _provinceUnlockPanel.ShowPanel(_provinceModel);
     }
 
     public void Exit()

@@ -30,17 +30,17 @@ public class UIPanelsSwitcher : IDisposable
 
     public void OnUIClose() => PanelIsOpen = false;
 
-    public void OnProvinceUnlockButtonClick(ProvinceView provinceView)
+    public void OnProvinceUnlockButtonClick(ProvinceModel provinceModel)
     {
         OnCloseUIButtonClicked();
     }
 
-    public void OnLockProvinceClick(ProvinceView provinceView)
+    public void OnLockProvinceClick(ProvinceModel provinceModel)
     {
         if (PanelIsOpen)
             return;
 
-        _uiStateMachine.ChangeState(new UIProvinceUnlockPanelState(_provinceUnlockPanel, provinceView, _cameraMoverSwitcher));
+        _uiStateMachine.ChangeState(new UIProvinceUnlockPanelState(_provinceUnlockPanel, provinceModel, _cameraMoverSwitcher));
     }
 
     public void Dispose()
@@ -53,12 +53,12 @@ public class UIPanelsSwitcher : IDisposable
         _provinceUnlockPanel.CloseButtonClicked -= OnCloseUIButtonClicked;
     }
 
-    private void OnCityChoose()
+    private void OnCityChoose(CityModel cityModel)
     {
         if (PanelIsOpen)
             return;
 
-        _uiStateMachine.ChangeState(new UICityPanelState(_cityPanel, _clickedCityDetector.ClickedCity, _cameraMoverSwitcher));
+        _uiStateMachine.ChangeState(new UICityPanelState(_cityPanel, cityModel, _cameraMoverSwitcher));
     }
 
     private void OnCloseUIButtonClicked()

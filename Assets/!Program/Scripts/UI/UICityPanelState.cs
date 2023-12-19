@@ -1,12 +1,12 @@
 ﻿public class UICityPanelState : IUIState
 {
     private CityPanel _cityPanel;
-    private CityView _city;
+    private CityModel _clickedCityModel;
     private CameraMoverSwitcher _cameraMoverSwitcher;
 
-    public UICityPanelState(CityPanel cityPanel, CityView clickedCity, CameraMoverSwitcher cameraMoverSwitcher)
+    public UICityPanelState(CityPanel cityPanel, CityModel clickedCityModel, CameraMoverSwitcher cameraMoverSwitcher)
     {
-        _city = clickedCity;
+        _clickedCityModel = clickedCityModel;
         _cityPanel = cityPanel;
         _cameraMoverSwitcher = cameraMoverSwitcher;
     }
@@ -14,7 +14,7 @@
     public void Enter()
     {
         _cameraMoverSwitcher.Disable();
-        _cityPanel.ShowPanel(_city.name);
+        _cityPanel.ShowPanel(_clickedCityModel);
     }
 
     public void Exit()
