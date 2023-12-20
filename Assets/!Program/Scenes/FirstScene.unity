@@ -399,7 +399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.32652453, y: 0.11526905}
   m_AnchorMax: {x: 0.9192038, y: 0.929}
-  m_AnchoredPosition: {x: -0.77485657, y: -6.4000015}
+  m_AnchoredPosition: {x: -0.77485657, y: -6.4000006}
   m_SizeDelta: {x: -1.5497, y: -26.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &152190437
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 61.5
+  m_fontSize: 61.45
   m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3646,7 +3646,7 @@ GameObject:
   - component: {fileID: 1565772806}
   - component: {fileID: 1565772805}
   m_Layer: 5
-  m_Name: Moto (2)
+  m_Name: Bus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4146,9 +4146,9 @@ MonoBehaviour:
   _titleText: {fileID: 842305929}
   _closeButton: {fileID: 1684158886}
   _universalCloseButton: {fileID: 1289681881}
-  _motorbikeLevel: 0
-  _carLevel: 0
-  _busLevel: 0
+  _motorbikeLevel: {fileID: 723954950}
+  _carLevel: {fileID: 1014776524}
+  _busLevel: {fileID: 1009635080}
 --- !u!1 &1772297481
 GameObject:
   m_ObjectHideFlags: 0
@@ -4483,7 +4483,7 @@ GameObject:
   - component: {fileID: 1874593913}
   - component: {fileID: 1874593912}
   m_Layer: 5
-  m_Name: Moto (1)
+  m_Name: Car
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

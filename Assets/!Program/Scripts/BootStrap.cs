@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class BootStrap : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class BootStrap : MonoBehaviour
     [SerializeField] private CityPanel _cityPanel;
     [SerializeField] private ProvinceUnlockPanel _provinceUnlockPanel;
     [SerializeField] private CitiesInitializer _citiesInitializer;
+    [SerializeField] private Button _universalCloseButton;
     
     private MainParameterModel _moneyModel;
     private MainParameterModel _passengersModel;
@@ -28,6 +30,7 @@ public class BootStrap : MonoBehaviour
     private ProvinceLevelIncreaser _provinceLevelCalculator;
     private GameUpgrades _gameUpgrades;
     private PriceList _priceList;
+    private UniversalCloseButtonSwitcher _universalCloseButtonSwitcher;
 
     private void Awake()
     {
@@ -45,6 +48,7 @@ public class BootStrap : MonoBehaviour
 
         _cityPanel.Initialize();
         _provinceUnlockPanel.Initialize();
+        _universalCloseButtonSwitcher = new UniversalCloseButtonSwitcher(_universalCloseButton, _cityPanel, _provinceUnlockPanel);
 
         _gameUpgrades = new GameUpgrades();
         _mainParametersCalculator = new MainParametersCalculator(_moneyModel, _passengersModel, _provinceUnlockPanel);
@@ -60,7 +64,7 @@ public class BootStrap : MonoBehaviour
         _roadBuilder.Initialize(_cityDetector, _moneyModel);
 
 
-        _uiPanelSwitcher = new UIPanelsSwitcher(_cityDetector, _uiStateMachine, _cityPanel, _provinceUnlockPanel, _cameraMoverSwitcher);
+        _uiPanelSwitcher = new UIPanelsSwitcher(_cityDetector, _uiStateMachine, _cityPanel, _provinceUnlockPanel, _universalCloseButtonSwitcher, _cameraMoverSwitcher);
         _compositeDisposable.Add(_uiPanelSwitcher);
         
         _country.Initialize(_provinceLevelCalculator, _uiPanelSwitcher);
