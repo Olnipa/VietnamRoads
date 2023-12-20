@@ -32,7 +32,7 @@ public class BootStrap : MonoBehaviour
     private PriceList _priceList;
     private UniversalCloseButtonSwitcher _universalCloseButtonSwitcher;
 
-    private void Awake()
+    private void Start()
     {
         _compositeDisposable = new CompositeDisposable();
 

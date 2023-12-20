@@ -5,10 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class CityView : View
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private ProvinceView _provinceView;
 
-    [SerializeField] public readonly int _defaultCarsCount = 3;
     [SerializeField] private int _additionalCarsOnLevelUp = 3;
     [SerializeField] private int _maxMotorbikeLevel = 3;
     [SerializeField] private int _maxCarLevel = 3;
@@ -18,7 +16,10 @@ public class CityView : View
     [SerializeField] private float _maxTimeBetweenCar = 9f;
     [SerializeField] private float _timeToWaitAvailableVehicle = 3f;
     [SerializeField] private int _defaultVehiclesCount = 30;
+
+    [SerializeField] public readonly int _defaultCarsCount = 3;
     
+    private SpriteRenderer _spriteRenderer;
     private VehicleFactory _vehicleFactory;
     private VehicleStation _vehicleStation;
 
@@ -31,6 +32,7 @@ public class CityView : View
 
     public void Initialize(CityModel cityModel, VehicleFactory vehicleFactory)
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _vehicleFactory = vehicleFactory;
         CityModel = cityModel;
         CancellationTokenSource = new CancellationTokenSource();
