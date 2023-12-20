@@ -2,7 +2,7 @@
 
 public class UIPanelsSwitcher : IDisposable
 {
-    private ClickedCityDetector _clickedCityDetector;
+    private ClickedObjectDetector _clickedObjectDetector;
     private UIStateMachine _uiStateMachine;
     private CityPanel _cityPanel;
     private ProvinceUnlockPanel _provinceUnlockPanel;
@@ -11,9 +11,9 @@ public class UIPanelsSwitcher : IDisposable
 
     public bool PanelIsOpen { get; private set; }
 
-    public UIPanelsSwitcher(ClickedCityDetector clickedCityDetector, UIStateMachine uiStateMachine, CityPanel cityPanel, ProvinceUnlockPanel provincePanel, UniversalCloseButtonSwitcher universalCloseButton, CameraMoverSwitcher cameraMoverSwitcher)
+    public UIPanelsSwitcher(ClickedObjectDetector clickedObjectDetector, UIStateMachine uiStateMachine, CityPanel cityPanel, ProvinceUnlockPanel provincePanel, UniversalCloseButtonSwitcher universalCloseButton, CameraMoverSwitcher cameraMoverSwitcher)
     {
-        _clickedCityDetector = clickedCityDetector;
+        _clickedObjectDetector = clickedObjectDetector;
         _uiStateMachine = uiStateMachine;
         _cityPanel = cityPanel;
         _provinceUnlockPanel = provincePanel;
@@ -23,7 +23,8 @@ public class UIPanelsSwitcher : IDisposable
         _uiStateMachine.UIPanelOpened += OnUIOpen;
         _uiStateMachine.UIPanelClosed += OnUIClose;
         _provinceUnlockPanel.OkButtonClicked += OnProvinceUnlockButtonClick;
-        _clickedCityDetector.CityChosed += OnCityChoose;
+        _clickedObjectDetector.CityChosed += OnCityChoose;
+        _clickedObjectDetector.ProvinceLockerClicked += SetProvincePanelUIState;
         _cityPanel.CloseButtonClicked += OnCloseUIButtonClicked;
         _provinceUnlockPanel.CloseButtonClicked += OnCloseUIButtonClicked;
         _universalCloseButton.Clicked += OnCloseUIButtonClicked;
@@ -38,7 +39,7 @@ public class UIPanelsSwitcher : IDisposable
         OnCloseUIButtonClicked();
     }
 
-    public void OnLockProvinceClick(ProvinceModel provinceModel)
+    public void SetProvincePanelUIState(ProvinceModel provinceModel)
     {
         if (PanelIsOpen)
             return;
@@ -51,7 +52,8 @@ public class UIPanelsSwitcher : IDisposable
         _uiStateMachine.UIPanelOpened -= OnUIOpen;
         _uiStateMachine.UIPanelClosed -= OnUIClose;
         _provinceUnlockPanel.OkButtonClicked -= OnProvinceUnlockButtonClick;
-        _clickedCityDetector.CityChosed -= OnCityChoose;
+        _clickedObjectDetector.CityChosed -= OnCityChoose;
+        _clickedObjectDetector.ProvinceLockerClicked -= SetProvincePanelUIState;
         _cityPanel.CloseButtonClicked -= OnCloseUIButtonClicked;
         _provinceUnlockPanel.CloseButtonClicked -= OnCloseUIButtonClicked;
         _universalCloseButton.Clicked -= OnCloseUIButtonClicked;

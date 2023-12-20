@@ -24,7 +24,7 @@ public class BootStrap : MonoBehaviour
     private MainParametersCalculator _mainParametersCalculator;
     private UIPanelsSwitcher _uiPanelSwitcher;
     private CameraMoverSwitcher _cameraMoverSwitcher;
-    private ClickedCityDetector _cityDetector;
+    private ClickedObjectDetector _cityDetector;
     private UIStateMachine _uiStateMachine;
     private CompositeDisposable _compositeDisposable;
     private ProvinceLevelIncreaser _provinceLevelCalculator;
@@ -49,6 +49,7 @@ public class BootStrap : MonoBehaviour
         _cityPanel.Initialize();
         _provinceUnlockPanel.Initialize();
         _universalCloseButtonSwitcher = new UniversalCloseButtonSwitcher(_universalCloseButton, _cityPanel, _provinceUnlockPanel);
+        _compositeDisposable.Add(_universalCloseButtonSwitcher);
 
         _gameUpgrades = new GameUpgrades();
         _mainParametersCalculator = new MainParametersCalculator(_moneyModel, _passengersModel, _provinceUnlockPanel);
@@ -58,7 +59,7 @@ public class BootStrap : MonoBehaviour
         _citiesInitializer.InitializeAllCities(_vehicleFactory);
 
         _uiStateMachine = new UIStateMachine();
-        _cityDetector = new ClickedCityDetector(_inputManager);
+        _cityDetector = new ClickedObjectDetector(_inputManager);
         _cameraMoverSwitcher = new CameraMoverSwitcher(_inputManager, _cityDetector);
 
         _roadBuilder.Initialize(_cityDetector, _moneyModel);

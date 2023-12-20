@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ClickedCityDetector
+public class ClickedObjectDetector
 {
     private ContactFilter2D _contactFilter;
     private RaycastHit2D[] _rayCastResults = new RaycastHit2D[3];
@@ -17,8 +17,9 @@ public class ClickedCityDetector
     public event Action CityConnected;
     public event Action<CityModel> CityChosed;
     public event Action DetectedCitiesReset;
+    public event Action<ProvinceModel> ProvinceLockerClicked;
 
-    public ClickedCityDetector(InputManager inputManager)
+    public ClickedObjectDetector(InputManager inputManager)
     {
         _inputManager = inputManager;
         _camera = Camera.main;
@@ -30,31 +31,6 @@ public class ClickedCityDetector
         _inputManager.ButtonDownClicked += OnButtonDownClick;
         _inputManager.ButtonUpClicked += OnUpButtonClick;
         _inputManager.Destroyed += OnInputManagerDestroy;
-    }
-
-    private void OnButtonDownClick()
-    {
-        ClickedCity = TryGetCityUnderMouse();
-    }
-
-    private CityView TryGetCityUnderMouse()
-    {
-        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
-
-        foreach (var hit in hits)
-        {
-            if (hit == false)
-                continue;
-
-            if (hit.collider.TryGetComponent(out CityView clickedCity))
-            {
-                CityClicked.Invoke(clickedCity.transform.position);
-                return clickedCity;
-            }
-        }
-
-        return null;
     }
 
     public bool TryGetConnectedCityPosition(out Vector2 currentPosition)
@@ -76,19 +52,48 @@ public class ClickedCityDetector
         return true;
     }
 
-    public void OnUpButtonClick()
+    private CityView TryGetObjectUnderMouse()
+    {
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
+
+        foreach (var hit in hits)
+        {
+            if (hit == false)
+                continue;
+
+            if (hit.collider.TryGetComponent(out CityView clickedCity) && clickedCity.isActiveAndEnabled)
+            {
+                CityClicked.Invoke(clickedCity.transform.position);
+                return clickedCity;
+            }
+            else if (hit.collider.TryGetComponent(out ProvinceLocker provinceLocker) && provinceLocker.isActiveAndEnabled)
+            {
+                ProvinceLockerClicked.Invoke(provinceLocker.ProvinceView.ProvinceModel);
+            }
+        }
+
+        return null;
+    }
+
+    private void OnUpButtonClick()
     {
         if (ClickedCity != null)
         {
             if (ConnectedCity != null)
                 CityConnected.Invoke();
-            else if (ClickedCity == TryGetCityUnderMouse())
+            else if (ClickedCity == TryGetObjectUnderMouse())
                 CityChosed.Invoke(ClickedCity.CityModel);
         }
 
         ClickedCity = null;
         ConnectedCity = null;
         DetectedCitiesReset.Invoke();
+    }
+
+    private void OnButtonDownClick()
+    {
+        ClickedCity = TryGetObjectUnderMouse();
     }
 
     private void OnInputManagerDestroy()

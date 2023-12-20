@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4191626817660654343}
   - component: {fileID: 7537796180473650166}
   m_Layer: 0
-  m_Name: Unlocker
+  m_Name: ProvinceLocker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

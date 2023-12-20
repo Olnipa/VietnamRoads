@@ -22,7 +22,7 @@ public class Country : MonoBehaviour
 
 		foreach (var provinceLocker in _provinciesUnlockers)
 		{
-			provinceLocker.Initialize(uiPanelsSwitcher);
+			provinceLocker.Initialize();
         }
 	}
 

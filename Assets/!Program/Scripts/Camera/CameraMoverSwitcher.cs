@@ -3,14 +3,14 @@
 public class CameraMoverSwitcher
 {
     private InputManager _inputManager;
-    private ClickedCityDetector _cityDetector;
+    private ClickedObjectDetector _cityDetector;
 
     private bool _isAvailable = true;
 
     public event Action MovementStarted;
     public event Action MovementStopped;
 
-    public CameraMoverSwitcher(InputManager inputManager, ClickedCityDetector cityDetector)
+    public CameraMoverSwitcher(InputManager inputManager, ClickedObjectDetector cityDetector)
     {
         _cityDetector = cityDetector;
         _inputManager = inputManager;

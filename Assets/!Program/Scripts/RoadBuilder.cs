@@ -10,12 +10,12 @@ public class RoadBuilder : MonoBehaviour
     [SerializeField] private LinePositionSetter _linePositionSetter;
     [SerializeField] private Road _roadPrefab;
 
-    private ClickedCityDetector _cityDetector;
+    private ClickedObjectDetector _cityDetector;
     private MainParameterModel _moneyModel;
 
     private List<Road> _roads = new List<Road>();
 
-    public void Initialize(ClickedCityDetector cityDetector, MainParameterModel moneyModel)
+    public void Initialize(ClickedObjectDetector cityDetector, MainParameterModel moneyModel)
     {
         _cityDetector = cityDetector;
         _moneyModel = moneyModel;
