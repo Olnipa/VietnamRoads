@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using UnityEngine;
+using Zenject;
 
 public class CameraMover : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class CameraMover : MonoBehaviour
     private CameraMoverSwitcher _cameraMoverEnabler;
     private Vector3 _startMousePosition;
     private Vector3 _movementDelta;
+
+    [Inject]
+    private void Initialize(CameraMoverSwitcher cameraEnabler)
+    {
+        _cameraMoverEnabler = cameraEnabler;
+        _cameraMoverEnabler.MovementStarted += OnCameraMoveStart;
+        _cameraMoverEnabler.MovementStopped += OnCameraMoveStop;
+        enabled = false;
+    }
 
     private void OnDestroy()
     {
@@ -29,14 +39,6 @@ public class CameraMover : MonoBehaviour
             newCameraTargetPosition : _cameraBoundsCollider.ClosestPoint(newCameraTargetPosition);
 
         _startMousePosition = Input.mousePosition;
-    }
-
-    public void Initialize(CameraMoverSwitcher cameraEnabler)
-    {
-        _cameraMoverEnabler = cameraEnabler;
-        _cameraMoverEnabler.MovementStarted += OnCameraMoveStart;
-        _cameraMoverEnabler.MovementStopped += OnCameraMoveStop;
-        enabled = false;
     }
 
     private void OnCameraMoveStart()

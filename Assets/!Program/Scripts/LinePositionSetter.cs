@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(LineRenderer))]
 public class LinePositionSetter : MonoBehaviour
@@ -18,6 +18,20 @@ public class LinePositionSetter : MonoBehaviour
     public Vector2 StartLinePosition { get; private set; }
     public Vector2 EndLinePosition { get; private set; }
 
+    [Inject]
+    private void Initialize(ClickedObjectDetector cityDetector, MainParameterModel moneyModel)
+    {
+        _lineRenderer = GetComponent<LineRenderer>();
+        _cityDetector = cityDetector;
+        _moneyModel = moneyModel;
+
+        _cityDetector.CityClicked += OnCityClicked;
+        _cityDetector.DetectedCitiesReset += OnCitiesReset;
+
+        _lineRenderer.enabled = false;
+        enabled = false;
+    }
+
     private void LateUpdate()
     {
         if (_isCityClicked == false)
@@ -32,19 +46,6 @@ public class LinePositionSetter : MonoBehaviour
     {
         _cityDetector.CityClicked -= OnCityClicked;
         _cityDetector.DetectedCitiesReset -= OnCitiesReset;
-    }
-
-    public void Initialize(ClickedObjectDetector cityDetector, MainParameterModel moneyModel)
-    {
-        _lineRenderer = GetComponent<LineRenderer>();
-        _cityDetector = cityDetector;
-        _moneyModel = moneyModel;
-
-        _cityDetector.CityClicked += OnCityClicked;
-        _cityDetector.DetectedCitiesReset += OnCitiesReset;
-
-        _lineRenderer.enabled = false;
-        enabled = false;
     }
 
     private void SetLineColor(Color color)

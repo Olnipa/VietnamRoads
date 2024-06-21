@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class CitiesInitializer : MonoBehaviour
 {
-	private List<CityView> _cities = new List<CityView>();
+	private readonly List<CityView> _cities = new List<CityView>();
 
-    public void InitializeAllCities(VehicleFactory _vehicleFactory)
+	// [Inject]
+    private void InitializeAllCities(VehicleFactory _vehicleFactory)
 	{
 		_cities.AddRange(GetComponentsInChildren<CityView>());
 

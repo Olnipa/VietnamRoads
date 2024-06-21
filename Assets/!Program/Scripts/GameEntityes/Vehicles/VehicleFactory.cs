@@ -1,10 +1,10 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
+using Zenject;
 
 public class VehicleFactory : MonoBehaviour
 {
-    [SerializeField] private MotoBike _motobike;
-    [SerializeField] private int _motobikeInitialCapacity = 1;
+    [SerializeField] private MotoBike _motorbike;
+    [SerializeField] private int _motorbikeInitialCapacity = 1;
 
     private MainParametersCalculator _moneyCalculator;
 
@@ -12,7 +12,8 @@ public class VehicleFactory : MonoBehaviour
     //private const int SecondCityLevel = 2;
     //private const int ThirdCityLevel = 3;
 
-    public void Initialize(MainParametersCalculator moneyCalculator)
+    [Inject]
+    private void Initialize(MainParametersCalculator moneyCalculator)
     {
         _moneyCalculator = moneyCalculator;
     }
@@ -21,8 +22,8 @@ public class VehicleFactory : MonoBehaviour
     {
         if (cityLevel == FirstCityLevel)
         {
-            Vehicle vehicle = Instantiate(_motobike, parentTransform);
-            vehicle.Initialize(cityColor, _motobikeInitialCapacity);
+            Vehicle vehicle = Instantiate(_motorbike, parentTransform);
+            vehicle.Initialize(cityColor, _motorbikeInitialCapacity);
             vehicle.VehicleArrived += OnVehicleArrived;
             vehicle.Disable();
             return vehicle;

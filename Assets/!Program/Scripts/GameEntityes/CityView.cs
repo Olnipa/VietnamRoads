@@ -17,7 +17,7 @@ public class CityView : View
     [SerializeField] private float _timeToWaitAvailableVehicle = 3f;
     [SerializeField] private int _defaultVehiclesCount = 30;
 
-    [SerializeField] public readonly int _defaultCarsCount = 3;
+    [SerializeField] public int _defaultCarsCount = 3;
     
     private SpriteRenderer _spriteRenderer;
     private VehicleFactory _vehicleFactory;

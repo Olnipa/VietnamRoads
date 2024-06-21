@@ -2,23 +2,23 @@ using System;
 
 public class ProvinceModel : Model
 {
-	private ProvinceLevelIncreaser _provinceLevelCalculator;
+	private ProvinceLevelIncreaser _provinceLevelIncreaser;
 
-	public bool _isActive { get; private set; }
+	public bool IsActive { get; private set; }
 	public int Level { get; private set; }
 
 	public event Action Activated;
 
-	public ProvinceModel(ProvinceLevelIncreaser provinceLevelCalculator)
+	public ProvinceModel(ProvinceLevelIncreaser provinceLevelIncreaser)
 	{
-		_provinceLevelCalculator = provinceLevelCalculator;
+		_provinceLevelIncreaser = provinceLevelIncreaser;
     }
 
 	public void Unlock()
 	{
-        _isActive = true;
+        IsActive = true;
 		
-        Level = _provinceLevelCalculator.GetNextProvinceLevel();
+        Level = _provinceLevelIncreaser.GetNextProvinceLevel();
         Activated.Invoke();
     }
 }

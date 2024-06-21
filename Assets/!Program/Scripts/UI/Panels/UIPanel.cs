@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public abstract class UIPanel : MonoBehaviour
 {
@@ -13,15 +14,17 @@ public abstract class UIPanel : MonoBehaviour
     public event Action CloseButtonClicked;
     public event Action Opened;
 
+    [Inject]
+    protected virtual void Initialize()
+    {
+        _closeButton.onClick.AddListener(OnCloseButtonClick);
+    }
+
     private void OnDestroy()
     {
         _closeButton.onClick.RemoveListener(OnCloseButtonClick);
     }
 
-    public virtual void Initialize()
-    {
-        _closeButton.onClick.AddListener(OnCloseButtonClick);
-    }
 
     public virtual void ShowPanel(Model modelToShow)
     {

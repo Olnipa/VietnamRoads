@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class RoadBuilder : MonoBehaviour
 {
@@ -15,7 +15,8 @@ public class RoadBuilder : MonoBehaviour
 
     private List<Road> _roads = new List<Road>();
 
-    public void Initialize(ClickedObjectDetector cityDetector, MainParameterModel moneyModel)
+    [Inject]
+    private void Initialize(ClickedObjectDetector cityDetector, MainParameterModel moneyModel)
     {
         _cityDetector = cityDetector;
         _moneyModel = moneyModel;

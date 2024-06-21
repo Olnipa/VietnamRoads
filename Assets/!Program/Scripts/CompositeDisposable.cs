@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class CompositeDisposable
 {
-    private List<IDisposable> _disposables = new List<IDisposable>();
+    private readonly List<IDisposable> _disposables = new();
 
     public void Add(IDisposable disposable)
     {

@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using Zenject;
 
 public abstract class MainParameterView : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public abstract class MainParameterView : MonoBehaviour
 
     protected MainParameterModel _mainParameterModel;
 
-    public void Initialize(MainParameterModel mainParameterModel)
+    [Inject]
+    protected void Initialize(MainParameterModel mainParameterModel)
     {
         _mainParameterModel = mainParameterModel;
         OnValueUpdate();

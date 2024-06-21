@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 public class UniversalCloseButtonSwitcher : IDisposable
 {
-    private Button _universalCloseButton;
-    private UIPanel _cityPanel;
-    private UIPanel _provincePanel;
+    private UniversalCloseButton _universalCloseButton;
+    private CityPanel _cityPanel;
+    private ProvinceUnlockPanel _provincePanel;
 
     public event Action Clicked;
 
-    public UniversalCloseButtonSwitcher(Button universalCloseButton, UIPanel cityPanel, UIPanel provincePanel)
+    public UniversalCloseButtonSwitcher(UniversalCloseButton universalCloseButton, CityPanel cityPanel, ProvinceUnlockPanel provincePanel)
     {
         _universalCloseButton = universalCloseButton;
         _cityPanel = cityPanel;

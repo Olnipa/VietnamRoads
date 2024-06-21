@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class ClickedObjectDetector
 {
@@ -71,6 +73,7 @@ public class ClickedObjectDetector
             {
                 ProvinceLockerClicked.Invoke(provinceLocker.ProvinceView.ProvinceModel);
             }
+
         }
 
         return null;
